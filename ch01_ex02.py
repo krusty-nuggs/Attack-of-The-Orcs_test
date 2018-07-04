@@ -37,7 +37,7 @@ def reset_health_meter(health_meter):
     health_meter['enemy'] = 30
 
 def show_health(health_meter):
-    # TODO:
+        print('Health: Sir Foo: '+ health_meter['player'] + ', Enemy: ' + health_meter['enemy'])
 
 def occupy_huts():
     huts = []
@@ -51,8 +51,6 @@ def process_user_choice():
     user_choice = input('\n' + msg)
     idx = int(user_choice)
     return idx
-
-# TODO: enter_hut()
 
 def reveal_occupants(idx, huts):
     """"Print the occupants of the hut"""
