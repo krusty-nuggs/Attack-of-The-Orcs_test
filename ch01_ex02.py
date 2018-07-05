@@ -1,7 +1,75 @@
-# v0.0.5
+# v1.0.0
 
 import random
 import textwrap
+
+class AttackOfTheOrcs():
+    """docstring for AttackOfTheOrcs."""
+    def __init__(self):
+        self.huts = []
+        self.player = None
+
+    def get_occupants(self):
+
+    def show_game_mission(self):
+
+    def _process_user_choice(self):
+
+    def _occupy_huts(self):
+        """Randomly occupy the huts with one of: friend, enemy, or 'None'"""
+        for i in range(5):
+            choice_lst = ['enemy', 'friend', None]
+            computer_choice = random.choice(choice_lst)
+            if computer_choice == 'enemy':
+                name = 'enemy-' + str(i+1)
+                self.huts.append(Hut(i+1, OrcRider(name)))
+            elif computer_choice == 'friend':
+                name = 'knight-' + str(i+1)
+                self.huts.append(Hut(i+1, Knight(name)))
+            else:
+                self.huts.append(Hut(i+1, computer_choice))
+
+    def play(self):
+        self.player = Knight()
+        self._occupy_huts()
+        acquired_hut_counter = 0
+
+        self.show_game_mission()
+        self.player.show_health(bold=True)
+
+        while acquired_hut_counter < 5:
+            idx = self._process_user_choice()
+            self.player.acquire_hut(self.huts[idx-1])
+
+            if self.player.health_meter <= 0:
+                print_bold("YOU LOSE :( Better luck next time")
+                break
+
+            if self.huts[idx-1].is_acquired:
+                acquired_hut_counter +=1
+
+        if acquired_hut_counter == 5:
+            print_bold("Congratulations! YOU WIN!!!")
+
+class Knight():
+    """docstring for Knight"""
+    def __init__(self):
+        self.health_meter = []
+
+    def show_health():
+        # TODO:
+
+    def acquire_hut():
+        # TODO:
+
+class Hut():
+    """docstring for Hut."""
+    def __init__(self, number, occupant):
+
+
+    def acquire(self, new_occupant):
+
+    def get_occupant_type(self):
 
 def print_bold(msg, end='\n'):
     """Print a string in 'bold' font"""
@@ -118,4 +186,5 @@ def run_application():
         keep_playing = input("\nPlay again? Yes(y)/No(n): ")
 
 if __name__ == '__main__':
-    run_application()
+    game = AttackOfTheOrcs()
+    game.play()
